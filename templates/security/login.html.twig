@@ -1,24 +1,45 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Log in!{% endblock %}
+{% block title %}Iniciar Sesion{% endblock %}
 
 {% block body %}
-<form method="post">
+<div class="container">
+    <div class="row">
+      <div class="col-md-6 offset-md-3">
+        <h2 class="text-center text-dark mt-5">Iniciar Sesion</h2>
+        {# <div class="text-center mb-5 text-dark"></div> #}
+        <div class="card my-5">
+<form method="post" class="card-body cardbody-color p-lg-5">
     {% if error %}
         <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
     {% endif %}
 
     {% if app.user %}
         <div class="mb-3">
-            You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
+            Ya estas logueado como {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
         </div>
     {% endif %}
 
-    <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-    <label for="inputEmail">Email</label>
-    <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
-    <label for="inputPassword">Password</label>
-    <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
+
+
+
+            <div class="text-center">
+              <img src="/images/user/user.png" class="img-fluid profile-image-pic img-thumbnail rounded-circle my-3"
+                width="200px" alt="profile">
+            </div>
+
+            <div class="mb-3">
+              <input type="email" class="form-control" value="{{ last_username }}" name="email" id="inputEmail" aria-describedby="emailHelp"
+                placeholder="ejemplo@dominio.com" autocomplete="email" required autofocus>
+            </div>
+            <div class="mb-3">
+              <input type="password" class="form-control" name="password" id="inputPassword" placeholder="password" autocomplete="current-password" required>
+            </div>
+            <div class="text-center"><button type="submit" class="btn btn-color px-5 mb-5 w-100">Login</button></div>
+            <div id="emailHelp" class="form-text text-center mb-5 text-dark">No registrado? <a href="" class="text-dark fw-bold"> Create una cuenta</a>
+            </div>
+
+
 
     <input type="hidden" name="_csrf_token"
            value="{{ csrf_token('authenticate') }}"
@@ -35,8 +56,13 @@
         </div>
     #}
 
-    <button class="btn btn-lg btn-primary" type="submit">
+    {# <button class="btn btn-lg btn-primary" type="submit">
         Sign in
-    </button>
+    </button> #}
 </form>
+        </div>
+
+      </div>
+    </div>
+  </div>
 {% endblock %}
